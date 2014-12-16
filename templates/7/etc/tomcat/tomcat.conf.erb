@@ -1,0 +1,66 @@
+# System-wide configuration file for tomcat services
+# This will be sourced by tomcat and any secondary service
+ 
+# Where your java installation lives
+JAVA_HOME="/etc/alternatives/jre"
+ 
+# Where your tomcat installation lives
+CATALINA_HOME="/usr/share/tomcat"
+# where the given instance lives
+CATALINA_BASE="/usr/share/tomcat"
+# the temp dir of the instance
+CATALINA_TMPDIR="/var/cache/tomcat/temp"
+ 
+# You can pass some parameters to java here if you wish to
+#JAVA_OPTS="-Xminf0.1 -Xmaxf0.3"
+ 
+# Use JAVA_OPTS to set java.library.path for libtcnative.so
+#JAVA_OPTS="-Djava.library.path=/usr/lib"
+
+# TDM WWU Settings
+<% if @javaOptString -%><%= @javaOptString %><% end %>
+<% if @catalinaOptString -%><%= @catalinaOptString %><% end %>
+ 
+# What user should run tomcat
+# This value is interpreted differently
+# 1.) for systemd units derived from tomcat.service, the User/Group settings is used
+# 2.) for systemd units derived from tomcat-jsvc.service this value is respected (with tomcat as a default)
+# 3.) for sysv init script, this value is respected (with tomcat as a default)
+#TOMCAT_USER="tomcat"
+ 
+# You can change your tomcat locale here
+#LANG="en_US"
+ 
+# Run tomcat under the Java Security Manager
+SECURITY_MANAGER="false"
+ 
+# Time to wait in seconds, before killing process
+SHUTDOWN_WAIT="30"
+ 
+# Whether to annoy the user with "attempting to shut down" messages or not
+SHUTDOWN_VERBOSE="false"
+ 
+# Set the TOMCAT_PID location
+# WARNING: does not make any sense for systemd users
+#CATALINA_PID="/var/run/tomcat.pid"
+ 
+# Connector port is 8080 for this tomcat instance
+#CONNECTOR_PORT="8080"
+ 
+# If you wish to further customize your tomcat environment,
+# put your own definitions here
+# (i.e. LD_LIBRARY_PATH for some jdbc drivers)
+ 
+# Clear work directory when tomcat is stopped or restarted
+CLEAR_WORK="false"
+ 
+# Java runtime options used when the "start", or "run" command is executed
+# Use # it if you want:
+# Set a location of JAAS config file
+# CATALINA_OPTS="-Djava.security.auth.login.config=$CATALINA_HOME/conf/jaas.config"
+# To collect data on how long garbage collection is taking
+# CATALINA_OPTS="-verbose:gc"
+# Make jikes error messages compatible with jasper
+# CATALINA_OPTS="-Dbuild.compiler.emacs=true"
+# Debug the permission (WARNING - This will generate many megabytes of output!)
+# CATALINA_OPTS="-Djava.security.debug=all"

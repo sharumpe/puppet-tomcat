@@ -1,0 +1,89 @@
+tomcat
+
+Manages tomcat on OpenSuSE. This has defined types for tomcat-users.xml's roles and users, context.xml parameters, and most-used settings in server.xml.  Also configures JAVA_OPTS and CATALINA_OPTS in tomcat(6).conf.  This does NOT restart Tomcat on config file changes.
+
+This is provided as-is, YMMV.
+
+Examples
+--------
+
+Include the module and set some Thread counts:
+
+	class { 'tomcat' :
+		version			=> 7,
+		ajpMaxThreads		=> 700,
+		ajpMinSpareThreads	=> 25,
+		ajpMaxSpareThreads	=> 75,
+	}
+
+Full list of class parameters currently recognized, with their default values:
+
+	$version            = 7,
+        $httpPort           = 8080,
+        $httpRedirectPort   = 8443,
+        $httpsPort          = 8443,
+        $ajpPort            = 8009,
+        $ajpRedirectPort    = 8443,
+        $ajpMaxThreads      = 150,
+        $ajpMinSpareThreads = 25,
+        $ajpMaxSpareThreads = 50
+
+Enable debug:
+
+	tomcat::conf { 'config' :
+		debugEnable	=> true,
+		debugPort	=> 9666,
+	}
+
+Full list of tomcat::conf parameters currently recognized, with their default values:
+
+        $debugEnable    = false,
+        $debugPort      = 9666,
+
+        $jmxEnable      = false,
+        $jmxPort        = 8666,
+
+        $memoryMin      = 128,
+        $memoryMax      = 1024,
+        $memoryPermGen  = 256,
+
+        $connectTimeout = 30,
+        $readTimeout    = 300,
+
+        $java_opt       = "",
+        $catalina_opt   = ""
+
+Set a default context parameter:
+(see .pp for defaults)
+
+	tomcat::context::parameter { 'serverName' :
+		value		=> 'vagrant.localdomain',
+		description	=> 'The serverName for use by things.',
+	}
+
+Set a default context environment value:
+(see .pp for defaults)
+
+	tomcat::context::environment { 'deploymentType' :
+		value		=> 'development',
+		override	=> false,
+		type		=> 'java.lang.String',
+		description	=> 'The deploymentType for use by things.',
+	}
+
+Set up a user for the Tomcat Manager:
+
+	tomcat::role { 'manager' : }
+
+	tomcat::user { 'manager-vagrant' :
+		user		=> 'vagrant',
+		password	=> 'vagrant',
+		role		=> 'manager',
+	}
+
+Contact
+-------
+
+nospam@macwebb.com
+
+If you send email, please include "sharumpe-tomcat" in the subject line.
