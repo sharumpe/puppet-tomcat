@@ -71,6 +71,16 @@ Set a default context environment value:
 		description	=> 'The deploymentType for use by things.',
 	}
 
+Set a server environment value in GlobalNamingResources:
+(see .pp for defaults)
+
+	tomcat::server::environment { 'isVagrant' :
+		value		=> 'true',
+		override	=> false,
+		type		=> 'java.lang.Boolean',
+		description	=> 'Let apps know they are in Vagrant.',
+	}
+
 Set up a user for the Tomcat Manager:
 
 	tomcat::role { 'manager' : }
