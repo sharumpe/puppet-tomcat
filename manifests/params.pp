@@ -10,7 +10,9 @@ class tomcat::params
 		$tc_server_config  = "/etc/tomcat6/server.xml"
 		$tc_extGnr_config  = "/etc/tomcat6/externalGlobalNamingResources.xml"
 		$tc_catalina_props = "/etc/tomcat6/catalina.properties"
-		} else {
+		$tc_shared         = "/usr/share/tomcat6/shared"
+		$tc_shared_lib     = "/usr/share/tomcat6/shared/lib"
+	} else {
 		$serviceName       = "tomcat"
 		$packageName	   = "tomcat"
 		$tc_config         = "/etc/tomcat/tomcat.conf"
