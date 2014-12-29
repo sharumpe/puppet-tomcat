@@ -47,10 +47,13 @@ class tomcat
 	$ajpMinSpareThreads	= 25,
 	$ajpMaxSpareThreads	= 50,
 	$contextSharedSessions 	= false,
-	$sharedLoader		= false
+	$sharedLoader		= false,
+	$ensureRunning		= false
 )
 {
 	include tomcat::params
+
+	validate_bool( $ensureRunning )
 
 	#
 	# Install the packages for the version of Tomcat we're using
@@ -73,10 +76,14 @@ class tomcat
 	# Ensure that the service is running and enabled on boot.
 	#
 	service { 'tomcat' :
-		ensure	=> running,
 		enable	=> true,
 		require	=> [ Package[ 'tomcat' ], Package[ 'tomcat-admin-webapps' ] ],
-		provider	=> systemd,
+		provider => systemd,
+	}
+	if ( $ensureRunning ) {
+		Service[ 'tomcat' ] {
+			ensure	=> running,
+		}
 	}
 
 	#
