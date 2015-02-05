@@ -1,6 +1,6 @@
 {
   "name": "sharumpe-tomcat",
-  "version": "0.4.1",
+  "version": "0.4.6",
   "source": "https://github.com/sharumpe/puppet-tomcat",
   "author": "Tim McLaughlin <nospam@macwebb.com>",
   "license": "Apache License, Version 2.0",
@@ -17,19 +17,19 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.0.0"
+      "version_requirement": ">= 4.3.2"
     },
     {
       "name": "puppetlabs/concat",
-      "version_requirement": ">= 1.0.4"
+      "version_requirement": ">= 1.1.0"
     }
   ],
   "types": [
 
   ],
   "checksums": {
-    "Modulefile": "215bea654343da558706be96f6e38dda",
-    "README": "7f974cec2dd6f1d968bc3381e4d44659",
+    "Modulefile": "9576ba7a93e62d8e521cccd3211aafda",
+    "README": "f67f007e702593ef47d19b105e12d7ec",
     "files/6/etc/tomcat6/tomcat-users.xml": "b8c5492319c8b226bc2e7330856aaab0",
     "files/6/etc/tomcat6/tomcat-users.xml.f1": "eb19c12b4bdcd1960e458b91fe4fd042",
     "files/6/etc/tomcat6/tomcat-users.xml.f2": "64f8da2d54f64726bfebdcdf7047d542",
@@ -38,20 +38,20 @@
     "manifests/conf.pp": "ee72d962da25843f6cf558bc74b6cfaf",
     "manifests/context/environment.pp": "d52a691b197785484966954ad1f1175b",
     "manifests/context/parameter.pp": "729de43e51fdf063a6f7d26935235c1a",
-    "manifests/init.pp": "e4676ce2e028d1ccb5d52abd4acc5663",
-    "manifests/params.pp": "6f7c63e7ed92f02309c3efffa6b0ffd2",
+    "manifests/init.pp": "f54eebfcd39c9c7d935e048167e590d4",
+    "manifests/params.pp": "1febba9de92d7ecabf8ec211d1249615",
     "manifests/role.pp": "d937961a36a128f8393b98da8babb21e",
-    "manifests/server/resource.pp": "048acc90b47cc6a3c5becc8b855e1cae",
+    "manifests/server/resource.pp": "f711fe016e72d65394026beeb29c51bb",
     "manifests/tc6packages.pp": "c121427e12aaec0f22c5bcfaa0036bc7",
     "manifests/user.pp": "28d9e4fe98f5bf16fe5f1f0723d72f49",
     "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
     "templates/6/etc/tomcat6/context.xml.f1.erb": "0185c4a1ecf3418cd40ca401be70ec67",
-    "templates/6/etc/tomcat6/externalGlobalNamingResources.xml-dbcp-frag.erb": "14ebaae5654abf63873a18b6f9cf5cdf",
-    "templates/6/etc/tomcat6/server.xml.erb": "527f050955f011fc54bb5ed409b8e836",
+    "templates/6/etc/tomcat6/externalGlobalNamingResources.xml-dbcp-frag.erb": "ada9768937e0aab4af1699d8b06a6618",
+    "templates/6/etc/tomcat6/server.xml.erb": "3da91b23a7369540db9fe8486641c923",
     "templates/6/etc/tomcat6/tomcat6.conf.erb": "f39cace04860b13b9ff184a9a4a50fdb",
     "templates/7/etc/tomcat/context.xml.f1.erb": "0185c4a1ecf3418cd40ca401be70ec67",
-    "templates/7/etc/tomcat/externalGlobalNamingResources.xml-dbcp-frag.erb": "14ebaae5654abf63873a18b6f9cf5cdf",
-    "templates/7/etc/tomcat/server.xml.erb": "b3772eca503aa6d569fdf96c5d80b601",
+    "templates/7/etc/tomcat/externalGlobalNamingResources.xml-dbcp-frag.erb": "ada9768937e0aab4af1699d8b06a6618",
+    "templates/7/etc/tomcat/server.xml.erb": "17209522120fa30dfe596abece310504",
     "templates/7/etc/tomcat/tomcat.conf.erb": "e35ed4b0044d16a06c4af2b0ea0f9c74",
     "tests/init.pp": "0d330a3033de1992d77a0792520a322f"
   }

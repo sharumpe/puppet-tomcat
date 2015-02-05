@@ -6,6 +6,12 @@ class tomcat::server::resource
 		mode	=> '0644',
 		require	=> Package[ 'tomcat' ],
 	}
+
+	concat::fragment { "blankline" :
+		target  => $params::tc_extGnr_config,
+		order   => 99,
+		content => ' ',
+	}
 }
 
 define tomcat::server::addDbcpResource
