@@ -37,18 +37,19 @@
 #
 class tomcat
 (
-	$version		= 7,
-	$httpPort		= 8080,
-	$httpRedirectPort	= 8443,
-	$httpsPort		= 8443,
-	$ajpPort		= 8009,
-	$ajpRedirectPort	= 8443,
-	$ajpMaxThreads		= 150,
-	$ajpMinSpareThreads	= 25,
-	$ajpMaxSpareThreads	= 50,
-	$contextSharedSessions 	= false,
-	$sharedLoader		= false,
-	$ensureRunning		= false
+	$version                 = 7,
+	$httpPort                = 8080,
+	$httpRedirectPort        = 8443,
+	$httpsPort               = 8443,
+	$ajpPort                 = 8009,
+	$ajpTomcatAuthentication = true,
+	$ajpRedirectPort         = 8443,
+	$ajpMaxThreads           = 150,
+	$ajpMinSpareThreads      = 25,
+	$ajpMaxSpareThreads      = 50,
+	$contextSharedSessions   = false,
+	$sharedLoader            = false,
+	$ensureRunning           = false
 )
 {
 	include tomcat::params

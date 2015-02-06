@@ -96,6 +96,7 @@
     <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
     -->
     <Connector port="<%= @ajpPort %>"
+               tomcatAuthentication="<%= @ajpTomcatAuthentication %>"
                enableLookups="false"
                maxThreads="<%= @ajpMaxThreads %>"
                minSpareThreads="<%= @ajpMinSpareThreads %>"
