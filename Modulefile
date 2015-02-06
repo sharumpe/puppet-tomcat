@@ -1,5 +1,5 @@
 name    'sharumpe-tomcat'
-version '0.4.6'
+version '0.4.7'
 source 'https://github.com/sharumpe/puppet-tomcat'
 author 'Tim McLaughlin <nospam@macwebb.com>'
 license 'Apache License, Version 2.0'
