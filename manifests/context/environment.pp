@@ -1,28 +1,27 @@
-define tomcat::context::environment
+define susetomcat::context::environment
 (
-	$envName = $name,
-	$value,
-	$type = "java.lang.String",
-	$override = true,
-	$description = "${name} defined by Puppet"
+  $envName = $name,
+  $value,
+  $type = "java.lang.String",
+  $override = true,
+  $description = "${name} defined by Puppet"
 )
 {
-	include tomcat::params
+  include susetomcat::params
 
-	validate_string( $envName )
-	validate_string( $value )
-	validate_string( $type )
-	validate_bool( $override )
-	validate_string( $description )
+  validate_string( $envName )
+  validate_string( $value )
+  validate_string( $type )
+  validate_bool( $override )
+  validate_string( $description )
 
-	$output = "\t<!-- ${description} -->\n\t<Environment name=\"${envName}\"\n\t\tvalue=\"${value}\"\n\t\ttype=\"${type}\"\n\t\toverride=\"${override}\" />\n\n"
+  $output = "\t<!-- ${description} -->\n\t<Environment name=\"${envName}\"\n\t\tvalue=\"${value}\"\n\t\ttype=\"${type}\"\n\t\toverride=\"${override}\" />\n\n"
 
-	# Place the output in the concat fragment
-	concat::fragment { "tc_context_environment_${envName}" :
-		target	=> $params::tc_context_config,
-		order	=> 10,
-		content	=> $output,
-	}
+  # Place the output in the concat fragment
+  concat::fragment { "tc_context_environment_${envName}" :
+    target  => $params::tc_context_config,
+    order  => 10,
+    content  => $output,
+  }
 
 }
-
