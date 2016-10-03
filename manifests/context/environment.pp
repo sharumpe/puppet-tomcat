@@ -1,9 +1,9 @@
 define susetomcat::context::environment
 (
-  $envName = $name,
   $value,
-  $type = "java.lang.String",
-  $override = true,
+  $envName     = $name,
+  $type        = 'java.lang.String',
+  $override    = true,
   $description = "${name} defined by Puppet"
 )
 {
@@ -20,8 +20,8 @@ define susetomcat::context::environment
   # Place the output in the concat fragment
   concat::fragment { "tc_context_environment_${envName}" :
     target  => $params::tc_context_config,
-    order  => 10,
-    content  => $output,
+    order   => 10,
+    content => $output,
   }
 
 }
