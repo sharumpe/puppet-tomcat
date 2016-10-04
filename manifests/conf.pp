@@ -71,7 +71,7 @@ define susetomcat::conf
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template( "tomcat/${susetomcat::version}${params::tc_config}.erb" ),
+    content => template( "susetomcat/${susetomcat::version}${params::tc_config}.erb" ),
     require => Package[ 'tomcat' ],
   }
 
