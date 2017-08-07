@@ -1,24 +1,23 @@
-define tomcat::context::parameter
+define susetomcat::context::parameter
 (
-	$paramName = $name,
-	$value,
-	$description = "${name} defined by Puppet"
+  $value,
+  $paramName = $name,
+  $description = "${name} defined by Puppet"
 )
 {
-	include tomcat::params
+  include susetomcat::params
 
-	validate_string( $paramName )
-	validate_string( $value )
-	validate_string( $description )
+  validate_string( $paramName )
+  validate_string( $value )
+  validate_string( $description )
 
-	$output = "\t<!-- ${description} -->\n\t<Parameter name=\"${paramName}\"\n\t\tvalue=\"${value}\" />\n"
+  $output = "\t<!-- ${description} -->\n\t<Parameter name=\"${paramName}\"\n\t\tvalue=\"${value}\" />\n"
 
-	# Place the output in the concat fragment
-	concat::fragment { "tc_context_parameter_${paramName}" :
-		target	=> $params::tc_context_config,
-		order	=> 15,
-		content	=> $output,
-	}
+  # Place the output in the concat fragment
+  concat::fragment { "tc_context_parameter_${paramName}" :
+    target  => $params::tc_context_config,
+    order   => 15,
+    content => $output,
+  }
 
 }
-

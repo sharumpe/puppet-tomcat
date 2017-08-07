@@ -1,66 +1,65 @@
-class tomcat::server::resource
+class susetomcat::server::resource
 {
-	concat { $params::tc_extGnr_config :
-		owner   => 'root',
-		group   => 'root',
-		mode	=> '0644',
-		require	=> Package[ 'tomcat' ],
-	}
+  concat { $params::tc_extGnr_config :
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    require => Package[ 'tomcat' ],
+  }
 
-	concat::fragment { "blankline" :
-		target  => $params::tc_extGnr_config,
-		order   => 99,
-		content => ' ',
-	}
+  concat::fragment { 'blankline' :
+    target  => $params::tc_extGnr_config,
+    order   => 99,
+    content => ' ',
+  }
 }
 
-define tomcat::server::addDbcpResource
+define susetomcat::server::addDbcpResource
 (
-	$resourceName	= $name,
-	$driverClass,
-	$connectionUrl,
-	$connectionUser,
-	$connectionPass,
-	$maxActive	= 100,
-	$maxIdle	= 30,
-	$maxWait	= 10000,
-	$validationQuery
+  $driverClass,
+  $connectionUrl,
+  $connectionUser,
+  $connectionPass,
+  $validationQuery,
+  $resourceName = $name,
+  $maxActive    = 100,
+  $maxIdle      = 30,
+  $maxWait      = 10000
 )
 {
-	include tomcat::params
+  include susetomcat::params
 
-	concat::fragment { "dbcp-$resourceName" :
-		target	=> $params::tc_extGnr_config,
-		order	=> 20,
-		content	=> template( "tomcat/${tomcat::version}${params::tc_extGnr_config}-dbcp-frag.erb")
-	}
+  concat::fragment { "dbcp-${resourceName}" :
+    target  => $params::tc_extGnr_config,
+    order   => 20,
+    content => template( "tomcat/${susetomcat::version}${params::tc_extGnr_config}-dbcp-frag.erb")
+  }
 }
 
-define tomcat::server::environment
+define susetomcat::server::environment
 (
-	$envName = $name,
-	$value,
-	$type = "java.lang.String",
-	$override = true,
-	$description = "${name} defined by Puppet"
+  $value,
+  $envName     = $name,
+  $type        = 'java.lang.String',
+  $override    = true,
+  $description = "${name} defined by Puppet"
 )
 {
-	include tomcat::params
+  include susetomcat::params
 
-	validate_string( $envName )
-	validate_string( $value )
-	validate_string( $type )
-	validate_bool( $override )
-	validate_string( $description )
+  validate_string( $envName )
+  validate_string( $value )
+  validate_string( $type )
+  validate_bool( $override )
+  validate_string( $description )
 
-	$output = "<!-- ${description} -->\n<Environment name=\"${envName}\"\n\tvalue=\"${value}\"\n\ttype=\"${type}\"\n\toverride=\"${override}\" />\n\n"
+  $output = "<!-- ${description} -->\n<Environment name=\"${envName}\"\n\tvalue=\"${value}\"\n\ttype=\"${type}\"\n\toverride=\"${override}\" />\n\n"
 
-	# Place the output in the concat fragment
-	concat::fragment { "tc_context_environment_${envName}" :
-		target	=> $params::tc_extGnr_config,
-		order	=> 10,
-		content	=> $output,
-	}
+  # Place the output in the concat fragment
+  concat::fragment { "tc_context_environment_${envName}" :
+    target  => $params::tc_extGnr_config,
+    order   => 10,
+    content => $output,
+  }
 
 }
-
