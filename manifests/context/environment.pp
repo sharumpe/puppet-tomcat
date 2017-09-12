@@ -19,7 +19,7 @@ define susetomcat::context::environment
 
   # Place the output in the concat fragment
   concat::fragment { "tc_context_environment_${envName}" :
-    target  => $params::tc_context_config,
+    target  => $susetomcat::params::tc_context_config,
     order   => 10,
     content => $output,
   }
