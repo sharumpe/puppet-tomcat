@@ -15,7 +15,7 @@ define susetomcat::context::parameter
 
   # Place the output in the concat fragment
   concat::fragment { "tc_context_parameter_${paramName}" :
-    target  => $params::tc_context_config,
+    target  => $susetomcat::params::tc_context_config,
     order   => 15,
     content => $output,
   }

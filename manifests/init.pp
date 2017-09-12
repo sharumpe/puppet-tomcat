@@ -54,7 +54,7 @@ class susetomcat
   #
   # Concat instance for context.xml
   #
-  concat { $params::tc_context_config:
+  concat { $susetomcat::params::tc_context_config:
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
@@ -66,12 +66,12 @@ class susetomcat
   }
 
   concat::fragment { 'context_preamble' :
-    target  => $params::tc_context_config,
+    target  => $susetomcat::params::tc_context_config,
     order   => 01,
-    content => template( "susetomcat/${version}${params::tc_context_config}.f1.erb" )
+    content => template( "susetomcat/${version}${susetomcat::params::tc_context_config}.f1.erb" )
   }
   concat::fragment { 'context_postamble' :
-    target  => $params::tc_context_config,
+    target  => $susetomcat::params::tc_context_config,
     order   => 99,
     content => "</Context>\n",
   }
@@ -79,11 +79,11 @@ class susetomcat
   #
   # Concat instance for server.xml
   #
-  file { $params::tc_server_config :
+  file { $susetomcat::params::tc_server_config :
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template( "susetomcat/${version}${params::tc_server_config}.erb" ),
+    content => template( "susetomcat/${version}${susetomcat::params::tc_server_config}.erb" ),
     require => Package[ 'tomcat' ],
   }
 
@@ -92,11 +92,11 @@ class susetomcat
   #
   if ( $sharedLoader ) {
     file_line { 'enable_shared_loader' :
-      path  => $params::tc_catalina_props,
+      path  => $susetomcat::params::tc_catalina_props,
       line  => 'shared.loader=${catalina.base}/shared/lib/*.jar',
       match => '^shared.loader=',
     }
-    file { [$params::tc_shared,$params::tc_shared_lib] :
+    file { [$susetomcat::params::tc_shared,$susetomcat::params::tc_shared_lib] :
       ensure => directory,
       owner  => 'root',
       group  => 'root',
@@ -104,41 +104,41 @@ class susetomcat
     }
   }
 
-  # concat { $params::tc_server_config:
+  # concat { $susetomcat::params::tc_server_config:
   #   owner   => 'root',
   #   group   => 'root',
   #   mode    => '0644',
   #   require => Package[ 'tomcat' ],
   # }
   # concat::fragment { 'preamble' :
-  #   target => $params::tc_server_config,
+  #   target => $susetomcat::params::tc_server_config,
   #   order  => 01,
-  #   source => "puppet:///modules/susetomcat/${version}${params::tc_server_config}.f1",
+  #   source => "puppet:///modules/susetomcat/${version}${susetomcat::params::tc_server_config}.f1",
   # }
   # concat::fragment { 'postamble' :
-  #   target => $params::tc_server_config,
+  #   target => $susetomcat::params::tc_server_config,
   #   order  => 99,
-  #   source => "puppet:///modules/susetomcat/${version}${params::tc_server_config}.f2",
+  #   source => "puppet:///modules/susetomcat/${version}${susetomcat::params::tc_server_config}.f2",
   # }
 
   #
   # Concat instance for tomcat-users.xml
   #
-  concat { $params::tc_user_config:
+  concat { $susetomcat::params::tc_user_config:
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
     require => Package[ 'tomcat' ],
   }
   concat::fragment { 'user_preamble' :
-    target => $params::tc_user_config,
+    target => $susetomcat::params::tc_user_config,
     order  => 01,
-    source => "puppet:///modules/susetomcat/${version}${params::tc_user_config}.f1",
+    source => "puppet:///modules/susetomcat/${version}${susetomcat::params::tc_user_config}.f1",
   }
   concat::fragment { 'user_postamble' :
-    target => $params::tc_user_config,
+    target => $susetomcat::params::tc_user_config,
     order  => 99,
-    source => "puppet:///modules/susetomcat/${version}${params::tc_user_config}.f2",
+    source => "puppet:///modules/susetomcat/${version}${susetomcat::params::tc_user_config}.f2",
   }
 
   #

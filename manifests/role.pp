@@ -13,7 +13,7 @@ define susetomcat::role
 
   # Place the output in the concat fragment
   concat::fragment { "tc_role_${role}" :
-    target  => $params::tc_user_config,
+    target  => $susetomcat::params::tc_user_config,
     order   => 10,
     content => $output,
   }

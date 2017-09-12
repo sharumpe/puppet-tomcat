@@ -67,11 +67,11 @@ define susetomcat::conf
   }
 
   # Now put it all in the appropriate template
-  file { $params::tc_config :
+  file { $susetomcat::params::tc_config :
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template( "susetomcat/${susetomcat::version}${params::tc_config}.erb" ),
+    content => template( "susetomcat/${susetomcat::version}${susetomcat::params::tc_config}.erb" ),
     require => Package[ 'tomcat' ],
   }
 

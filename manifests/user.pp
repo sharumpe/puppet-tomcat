@@ -17,7 +17,7 @@ define susetomcat::user
 
   # Place the output in the concat fragment
   concat::fragment { "tc_user_${user}" :
-    target  => $params::tc_user_config,
+    target  => $susetomcat::params::tc_user_config,
     order   => 15,
     content => $output,
   }
