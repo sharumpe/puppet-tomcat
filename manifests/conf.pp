@@ -1,17 +1,17 @@
 define susetomcat::conf
 (
   $debugEnable    = false,
-  $debugPort      = 9666,
+  $debugPort      = '9666',
 
   $jmxEnable      = false,
-  $jmxPort        = 8666,
+  $jmxPort        = '8666',
 
-  $memoryMin      = 128,
-  $memoryMax      = 1024,
-  $memoryPermGen  = 256,
+  $memoryMin      = '128',
+  $memoryMax      = '1024',
+  $memoryPermGen  = '256',
 
-  $connectTimeout = 30,
-  $readTimeout    = 300,
+  $connectTimeout = '30',
+  $readTimeout    = '300',
 
   $java_opt       = '',
   $catalina_opt   = ''
